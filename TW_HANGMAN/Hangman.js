@@ -27,7 +27,7 @@ let answer1 = 0;
 while (answer1 === 0){ 
     const firstChoise = prompt("Choose your Lettter");
         if (wordLetterSet.has(firstChoise.toUpperCase()) === true){
-        console.log("GOOD CHOISE!");  
+        console.log("GOOD CHOICE!");  
         choosenLetters.push(firstChoise);
         let wordIndex = wordLetters.indexOf(firstChoise.toUpperCase());
         console.log(wordIndex);
