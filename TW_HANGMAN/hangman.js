@@ -55,52 +55,83 @@ function guess() {
         "by typing one letter at a time.\n" +
         "But be careful, guess it right before you hang our coder!\n");
         console.log (constants.WORDS_TO_GUESS.level1[randomLevel1Word]);
-        const wordLetters = [];
-        const wordLetterSet = new Set;
-        const wordAnswerBox = [];
-        const choosenLetters = [];
 
-        for (let wordLetter of constants.WORDS_TO_GUESS.level1[randomLevel1Word]){
+        
+        // Start Arrays und Sets
+        let choosenWord = "Mississippi";
+        
+        let wordLetters = [];
+        let wordLetterSet = new Set;
+        let wordAnswerBox = [];
+        
+        for (let wordLetter of choosenWord){
             wordLetters.push(`${wordLetter}`.toUpperCase());
             wordLetterSet.add(`${wordLetter}`.toUpperCase());
             wordAnswerBox.push("_");
         }
-        //Wortlänge
-        const wordLength = wordLetters.length;
-        
-        console.log(wordLetters);
-        console.log(wordLetterSet);
-        console.log(wordLength);
-        console.log(wordAnswerBox.join(" "));
         
         //Question & Answer Loop
-        let answer1 = 0;
-        while (answer1 === 0){ 
-            const firstChoice = prompt("Pick a Letter: ");
-                if (wordLetterSet.has(firstChoice.toUpperCase()) === true){
-                console.log("GOOD CHOICE!");  
-                choosenLetters.push(firstChoice);
-                let wordIndex = wordLetters.indexOf(firstChoice.toUpperCase());
-                console.log(wordIndex);
-                while (wordIndex!=-1){
-                wordIndex = wordLetters.indexOf(firstChoice.toUpperCase());   
-                wordLetters.splice(wordIndex,1, 0)
-                wordAnswerBox.splice(wordIndex, 1, `${firstChoice}`.toUpperCase());
+        let answerLoop = 0;
+        let rightLetterCounter = 0;
+        let wrongLetterCounter = 0;
+        let wordIndex = [];
+        
+        while (answerLoop === 0){ 
+        const firstChoise = prompt("Choose your Lettter").toUpperCase();
+        let choosenLetters = new Set;
+        
+            if (wordLetterSet.has(firstChoise) && !choosenLetters.has(firstChoise)){
+                choosenLetters.add(firstChoise);
+                rightLetterCounter++;
+                
+                while (wordIndex!==-1){
+                wordIndex = wordLetters.indexOf(firstChoise);   
+                wordLetters.splice(wordIndex, 1, 0);
+                wordAnswerBox.splice(wordIndex, 1, firstChoise);
                 }
-                
+        
+                console.log("GOOD CHOISE!");  
                 console.log(wordAnswerBox.join(" "));
-        
                 
+            } else if (firstChoise !== wordLetterSet && !choosenLetters.has(firstChoise)){
+                choosenLetters.add(firstChoise);
+                wrongLetterCounter++;
         
-                } else if (firstChoice !== wordLetterSet && firstChoice !== choosenLetters){
-                console.log(`Sorry, but ${firstChoice} IS NOT IN THE WORD`);
-                choosenLetters.push(firstChoice);
+                console.log(`WRONG ${firstChoise} IS NOT IN THE WORD`);
                 console.log(choosenLetters);
         
-               } else if (firstChoice == choosenLetters){
-                console.log(`YOU TRIED THIS LETTER ALREADY. THIS WERE YOUR CHOOSEN LETTERS: ${choosenLetters}`)
-               }
-            }       
+            } else if (choosenLetters.has(firstChoise)){
+                console.log("ALLREADY ENTERED:"); 
+                console.log(choosenLetters);
+            }   
+        
+            if (rightLetterCounter===wordLetterSet.size){
+                console.log("WINNER");
+                answerLoop = 1;
+            }
+        
+            switch(wrongLetterCounter){
+                case 1:
+                    console.log("LIVES: 9/10");
+                    break;
+                case 2:
+                    console.log("LIVES: 8/10");
+                    break;
+                case 3:
+                    console.log("LIVES: 7/10");
+                    break;
+                case 4:
+                    console.log("LIVES: 6/10");
+                    break;
+                case 5:
+                    console.log("LIVES: 5/10");
+                    break;
+                case 6:
+                    console.log("LIVES: 4/10");
+                    break;
+            }
+        }
+              
     };     
 };    
 
