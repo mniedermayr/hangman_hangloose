@@ -282,9 +282,9 @@ const HANGMAN_PICS = [
 // TODO: Fill this list with values about a certain topic
 // you are passionate about: e.g. famous scientists, chess players, ...
 const WORDS_TO_GUESS = {
-  level1: ['coding','mentor','arrays'],
-  level2: ['algorithm','operators','abstraction'],
-  level3: ['ergonomics','specification','polymorphism']
+  level1: ['CODING','MENTOR','ARRAYS'],
+  level2: ['ALGORITHM','OPERATORS','ABSTRACTION'],
+  level3: ['ERGONOMICS','SPECIFICATION','POLYMORPHISMUS']
 }
 const MENU = [" \n" +
 

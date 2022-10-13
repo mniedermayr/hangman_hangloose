@@ -56,6 +56,7 @@ function quit() {
 function howTo() {
         console.log(" \n" + 
             "Welcome to Don't Hang The Coder! \n" +
+            " \n" +
             "If you want to play a round go back to the menu and press 1. \n" +
             "You will have to pick a level. There are three different levels: \n" +
             "easy, average & hard. The level you pick determinates how difficult \n" +
@@ -86,10 +87,9 @@ function addAWord() {
         if (LevelToAdd === "1") { 
             let newWord = prompt("Which word would you like to add: ")
             constants.WORDS_TO_GUESS.level1.push(newWord);
-            console.log(constants.WORDS_TO_GUESS.level1);
             console.log(" \n" +
             " \n" +
-            "Thank you!\n" +
+            "Thank you! I added your Word to this Level.\n" +
             " \n" +
             " \n" +
             " \n" +
@@ -98,10 +98,9 @@ function addAWord() {
         if (LevelToAdd === "2") { 
             let newWord = prompt("Which word would you like to add: ")
             constants.WORDS_TO_GUESS.level2.push(newWord);
-            console.log(constants.WORDS_TO_GUESS.level2);
             console.log(" \n" +
             " \n" +
-            "Thank you!\n" +
+            "Thank you! I added your Word to this Level.\n" +
             " \n" +
             " \n" +
             " \n" +
@@ -110,14 +109,18 @@ function addAWord() {
         if (LevelToAdd === "3") { 
             let newWord = prompt("Which word would you like to add: ")
             constants.WORDS_TO_GUESS.level3.push(newWord);
-            console.log(constants.WORDS_TO_GUESS.level3);
-            console.log("Thank you!")
+            console.log( " \n" +
+            " \n" +
+            "Thank you! I added your Word to this Level." +
+            " \n" +
+            " \n" +
+            " \n")
         };
-    } 
+    };
     if (question === "n") {
         console.log("Ok, let me bring you back then!");  
     };
-    };
+};
 
 // SPIELER WÄHLT EIN LEVEL UND SPIELT HANGMAN:
 // LEVEL 1
@@ -133,7 +136,6 @@ function guess() {
         "But be careful, guess it right before you hang our coder!\n" +
         " \n" +
         " \n");
-        console.log (constants.WORDS_TO_GUESS.level1[randomLevel1Word]);
 
         // Start Arrays und Sets
         
@@ -145,37 +147,37 @@ function guess() {
             wordLetters.push(`${wordLetter}`.toUpperCase());
             wordLetterSet.add(`${wordLetter}`.toUpperCase());
             wordAnswerBox.push("_");
-        }
+        };
         
         //Question & Answer Loop
         let answerLoop = 0;
         let rightLetterCounter = 0;
         let wrongLetterCounter = 0;
-        let wordIndex = [];
+        let choosenLetters = new Set;
         
         while (answerLoop === 0){ 
         const firstChoice = prompt(" \n" +
         " \n" +
         "Pick a Letter: ").toUpperCase();
-        let choosenLetters = new Set;
-        
+       
+
             if (wordLetterSet.has(firstChoice) && !choosenLetters.has(firstChoice)){
                 choosenLetters.add(firstChoice);
                 rightLetterCounter++;
-                
-                while (wordIndex!=-1){
-                wordIndex = wordLetters.indexOf(firstChoice.toUpperCase());   
-                wordLetters.splice(wordIndex, 1, 0);
-                wordAnswerBox.splice(wordIndex, 1, `${firstChoice}`.toUpperCase());
+                let outputWord = constants.WORDS_TO_GUESS.level1[randomLevel1Word];
+               for (var i= 0; i< outputWord.length; i++ ) {
+                    if (!choosenLetters.has(outputWord[i].toUpperCase())) {
+                        outputWord = outputWord.replace(outputWord[i], "_");
+                    };
                 };
                 console.log(" \n"+
                 "GOOD CHOICE!" +
                 " \n" +
                 " \n" +
                 " \n");  
-                console.log(wordAnswerBox.join(" "));
-                
-            } else if (firstChoice !== wordLetterSet && !choosenLetters.has(firstChoice)){
+                console.log(outputWord);
+        
+            } else if (!choosenLetters.has(firstChoice)) {
                 choosenLetters.add(firstChoice);
                 wrongLetterCounter++;
                 console.log(" \n" +
@@ -191,13 +193,15 @@ function guess() {
                 " \n"+
                 "You already entered this one." +
                 " \n"); 
-            }   
+            };   
         
             if (rightLetterCounter===wordLetterSet.size){
                 console.log(" \n" +
                 " \n" +
                 "YOU DID IT! \n" +
-                "Congratz! \n"+
+                " \n" +
+                " \n" +
+                "CONGRATZ! \n"+
                 " \n"+
                 " \n");
                 answerLoop = 1;
@@ -207,44 +211,55 @@ function guess() {
             switch(wrongLetterCounter){
                 case 1:
                     console.log(constants.HANGMAN_PICS[0]);
-                    console.log("LIVES: 9/10");
+                    console.log(" \n" +
+                    "LIVES: 9/10");
                     break;
                 case 2:
                     console.log(constants.HANGMAN_PICS[1]);
-                    console.log("LIVES: 8/10");
+                    console.log(" \n" +
+                    "LIVES: 8/10");
                     break;
                 case 3:
                     console.log(constants.HANGMAN_PICS[2]);
-                    console.log("LIVES: 7/10");
+                    console.log(" \n" +
+                    "LIVES: 7/10");
                     break;
                 case 4:
                     console.log(constants.HANGMAN_PICS[3]);
-                    console.log("LIVES: 6/10");
+                    console.log(" \n" +
+                    "LIVES: 6/10");
                     break;
                 case 5:
                     console.log(constants.HANGMAN_PICS[4]);
-                    console.log("LIVES: 5/10");
+                    console.log(" \n" +
+                    "LIVES: 5/10");
                     break;
                 case 6:
                     console.log(constants.HANGMAN_PICS[5]);
-                    console.log("LIVES: 4/10");
+                    console.log(" \n" +
+                    "LIVES: 4/10");
                     break;
                 case 7:
                     console.log(constants.HANGMAN_PICS[6]);
-                    console.log("LIVES: 3/10");
+                    console.log(" \n" +
+                    "LIVES: 3/10");
                     break;
                 case 8:
                     console.log(constants.HANGMAN_PICS[7]);
-                    console.log("LIVES: 2/10");
+                    console.log(" \n" +
+                    "LIVES: 2/10");
                     break;
                 case 9:
                     console.log(constants.HANGMAN_PICS[8]);
-                    console.log("LIVES: 1/10");
+                    console.log(" \n" +
+                    "LIVES: 1/10");
                     break;
                 case 10:
                     console.log(constants.HANGMAN_PICS[9]);
-                    console.log("LIVES: 0/10 \n" +
+                    console.log(" \n" +
+                    "LIVES: 0/10 \n" +
                     "Oh no! You hanged the Coder! \n" +
+                    " \n" +
                     "Better luck next time! \n" +
                     " \n" +
                     " \n");
@@ -263,7 +278,6 @@ function guess() {
         "But be careful, guess it right before you hang our coder!\n" +
         " \n" +
         " \n");
-        console.log (constants.WORDS_TO_GUESS.level2[randomLevel2Word]);
 
         // Start Arrays und Sets
         
@@ -275,37 +289,36 @@ function guess() {
             word2Letters.push(`${word2Letter}`.toUpperCase());
             word2LetterSet.add(`${word2Letter}`.toUpperCase());
             word2AnswerBox.push("_");
-        }
+        };
         
         //Question & Answer Loop
         let answerLoop2 = 0;
         let rightLetterCounter2 = 0;
         let wrongLetterCounter2 = 0;
-        let wordIndex2 = [];
-        
+        let choosenLetters2 = new Set;
+
         while (answerLoop2 === 0){ 
         const firstChoice2 = prompt(" \n" +
         " \n" +
         "Pick a Letter: ").toUpperCase();
-        let choosenLetters2 = new Set;
         
-            if (word2LetterSet.has(firstChoice2) && !choosenLetters2.has(firstChoice2)){
-                choosenLetters2.add(firstChoice2);
-                rightLetterCounter2++;
-                
-                while (wordIndex2!=-1){
-                wordIndex2 = wordLetters2.indexOf(firstChoice2.toUpperCase());   
-                word2Letters.splice(wordIndex2, 1, 0);
-                word2AnswerBox.splice(wordIndex2, 1, `${firstChoice2}`.toUpperCase());
+        if (word2LetterSet.has(firstChoice2) && !choosenLetters2.has(firstChoice2)){
+            choosenLetters2.add(firstChoice2);
+            rightLetterCounter2++;
+            let outputWord2 = constants.WORDS_TO_GUESS.level2[randomLevel2Word];
+           for (var i= 0; i< outputWord2.length; i++ ) {
+                if (!choosenLetters2.has(outputWord2[i].toUpperCase())) {
+                    outputWord2 = outputWord2.replace(outputWord2[i], "_");
                 };
-                console.log(" \n"+
-                "GOOD CHOICE!" +
-                " \n" +
-                " \n" +
-                " \n");  
-                console.log(word2AnswerBox.join(" "));
+            };
+            console.log(" \n"+
+            "GOOD CHOICE!" +
+            " \n" +
+            " \n" +
+            " \n");  
+            console.log(outputWord2);
                 
-            } else if (firstChoice2 !== word2LetterSet && !choosenLetters2.has(firstChoice2)){
+            } else if (!choosenLetters2.has(firstChoice2)){
                 choosenLetters2.add(firstChoice2);
                 wrongLetterCounter2++;
                 console.log(" \n" +
@@ -323,11 +336,14 @@ function guess() {
                 " \n"); 
             }   
         
-            if (rightLetterCounter2===wordLetterSet2.size){
+            if (rightLetterCounter2===word2LetterSet.size){
                 console.log(" \n" +
                 " \n" +
                 "YOU DID IT! \n" +
-                "Congratz! \n"+
+                " \n" +
+                " \n" +
+                " \n" +
+                "CONGRATZ! \n"+
                 " \n"+
                 " \n");
                 answerLoop = 1;
@@ -337,43 +353,53 @@ function guess() {
             switch(wrongLetterCounter2){
                 case 1:
                     console.log(constants.HANGMAN_PICS[0]);
-                    console.log("LIVES: 9/10");
+                    console.log(" \n" +
+                    "LIVES: 9/10");
                     break;
                 case 2:
                     console.log(constants.HANGMAN_PICS[1]);
-                    console.log("LIVES: 8/10");
+                    console.log(" \n" +
+                    "LIVES: 8/10");
                     break;
                 case 3:
                     console.log(constants.HANGMAN_PICS[2]);
-                    console.log("LIVES: 7/10");
+                    console.log(" \n" +
+                    "LIVES: 7/10");
                     break;
                 case 4:
                     console.log(constants.HANGMAN_PICS[3]);
-                    console.log("LIVES: 6/10");
+                    console.log(" \n" +
+                    "LIVES: 6/10");
                     break;
                 case 5:
                     console.log(constants.HANGMAN_PICS[4]);
-                    console.log("LIVES: 5/10");
+                    console.log(" \n" +
+                    "LIVES: 5/10");
                     break;
                 case 6:
                     console.log(constants.HANGMAN_PICS[5]);
-                    console.log("LIVES: 4/10");
+                    console.log(" \n" +
+                    "LIVES: 4/10");
                     break;
                 case 7:
                     console.log(constants.HANGMAN_PICS[6]);
-                    console.log("LIVES: 3/10");
+                    console.log(" \n" +
+                    "LIVES: 3/10");
                     break;
                 case 8:
                     console.log(constants.HANGMAN_PICS[7]);
-                    console.log("LIVES: 2/10");
+                    console.log(" \n" +
+                    "LIVES: 2/10");
                     break;
                 case 9:
                     console.log(constants.HANGMAN_PICS[8]);
-                    console.log("LIVES: 1/10");
+                    console.log(" \n" +
+                    "LIVES: 1/10");
                     break;
                 case 10:
                     console.log(constants.HANGMAN_PICS[9]);
-                    console.log("LIVES: 0/10 \n" +
+                    console.log(" \n" +
+                    "LIVES: 0/10 \n" +
                     "Oh no! You hanged the Coder! \n" +
                     "Better luck next time! \n" +
                     " \n" +
@@ -394,9 +420,6 @@ function guess() {
         "But be careful, guess it right before you hang our coder!\n" +
         " \n" +
         " \n");
-        console.log (constants.WORDS_TO_GUESS.level3[randomLevel3Word]);
-
-        // Start Arrays und Sets
         
         let word3Letters = [];
         let word3LetterSet = new Set;
@@ -406,37 +429,35 @@ function guess() {
             word3Letters.push(`${word3Letter}`.toUpperCase());
             word3LetterSet.add(`${word3Letter}`.toUpperCase());
             word3AnswerBox.push("_");
-        }
+        };
         
-        //Question & Answer Loop
         let answerLoop3 = 0;
         let rightLetterCounter3 = 0;
         let wrongLetterCounter3 = 0;
-        let wordIndex3 = [];
+        let choosenLetters3 = new Set;
         
         while (answerLoop3 === 0){ 
         const firstChoice3 = prompt(" \n" +
         " \n" +
         "Pick a Letter: ").toUpperCase();
-        let choosenLetters3 = new Set;
         
-            if (word3LetterSet.has(firstChoice3) && !choosenLetters3.has(firstChoice3)){
-                choosenLetters3.add(firstChoice3);
-                rightLetterCounter3++;
-                
-                while (wordIndex3!=-1){
-                wordIndex3 = word3Letters.indexOf(firstChoice3.toUpperCase());   
-                word3Letters.splice(wordIndex3, 1, 0);
-                word3AnswerBox.splice(wordIndex3, 1, `${firstChoice3}`.toUpperCase());
+        if (word3LetterSet.has(firstChoice3) && !choosenLetters3.has(firstChoice3)){
+            choosenLetters3.add(firstChoice3);
+            rightLetterCounter3++;
+            let outputWord3 = constants.WORDS_TO_GUESS.level3[randomLevel3Word];
+           for (var i= 0; i< outputWord3.length; i++ ) {
+                if (!choosenLetters3.has(outputWord3[i].toUpperCase())) {
+                    outputWord3 = outputWord3.replace(outputWord3[i], "_");
                 };
-                console.log(" \n"+
-                "GOOD CHOICE!" +
-                " \n" +
-                " \n" +
-                " \n");  
-                console.log(word3AnswerBox.join(" "));
+            };
+            console.log(" \n"+
+            "GOOD CHOICE!" +
+            " \n" +
+            " \n" +
+            " \n");  
+            console.log(outputWord3);
                 
-            } else if (firstChoice3 !== word3LetterSet && !choosenLetters3.has(firstChoice3)){
+            } else if (!choosenLetters3.has(firstChoice3)){
                 choosenLetters3.add(firstChoice3);
                 wrongLetterCounter3++;
                 console.log(" \n" +
@@ -458,7 +479,9 @@ function guess() {
                 console.log(" \n" +
                 " \n" +
                 "YOU DID IT! \n" +
-                "Congratz! \n"+
+                " \n" +
+                " \n" +
+                "CONGRATZ! \n"+
                 " \n"+
                 " \n");
                 answerLoop3 = 1;
@@ -468,44 +491,55 @@ function guess() {
             switch(wrongLetterCounter3) {
                 case 1:
                     console.log(constants.HANGMAN_PICS[0]);
-                    console.log("LIVES: 9/10");
+                    console.log(" \n" +
+                    "LIVES: 9/10");
                     break;
                 case 2:
                     console.log(constants.HANGMAN_PICS[1]);
-                    console.log("LIVES: 8/10");
+                    console.log(" \n" +
+                    "LIVES: 8/10");
                     break;
                 case 3:
                     console.log(constants.HANGMAN_PICS[2]);
-                    console.log("LIVES: 7/10");
+                    console.log(" \n" +
+                    "LIVES: 7/10");
                     break;
                 case 4:
                     console.log(constants.HANGMAN_PICS[3]);
-                    console.log("LIVES: 6/10");
+                    console.log(" \n" +
+                    "LIVES: 6/10");
                     break;
                 case 5:
                     console.log(constants.HANGMAN_PICS[4]);
-                    console.log("LIVES: 5/10");
+                    console.log(" \n" +
+                    "LIVES: 5/10");
                     break;
                 case 6:
                     console.log(constants.HANGMAN_PICS[5]);
-                    console.log("LIVES: 4/10");
+                    console.log(" \n" +
+                    "LIVES: 4/10");
                     break;
                 case 7:
                     console.log(constants.HANGMAN_PICS[6]);
-                    console.log("LIVES: 3/10");
+                    console.log(" \n" +
+                    "LIVES: 3/10");
                     break;
                 case 8:
                     console.log(constants.HANGMAN_PICS[7]);
-                    console.log("LIVES: 2/10");
+                    console.log(" \n" +
+                    "LIVES: 2/10");
                     break;
                 case 9:
                     console.log(constants.HANGMAN_PICS[8]);
-                    console.log("LIVES: 1/10");
+                    console.log(" \n" +
+                    "LIVES: 1/10");
                     break;
                 case 10:
                     console.log(constants.HANGMAN_PICS[9]);
-                    console.log("LIVES: 0/10 \n" +
+                    console.log(" \n" +
+                    "LIVES: 0/10 \n" +
                     "Oh no! You hanged the Coder! \n" +
+                    " \n" +
                     "Better luck next time! \n" +
                     " \n" +
                     " \n");
