@@ -314,15 +314,19 @@ const WORDS_TO_GUESS = {
 const MENU = [" \n" +
 
 " \n" +  
-  "Don't Hang The Coder\n" +
+"                          'Don't Hang The Coder' Edition\n" +
 " \n" +
 " \n" + 
 "Menu\n" +
+" \n" +
+" \n" +
 "1. Play Hangman\n" +
 "2. Add a new word\n" + 
 "3. How to play\n" +
 "4. Quit\n" +
-HANGMAN_PICS[6]];
+" \n" +
+" \n"
+];
 
 module.exports = {
   HANGMAN_PICS: HANGMAN_PICS,
