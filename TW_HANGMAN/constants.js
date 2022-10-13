@@ -58,3 +58,5 @@ module.exports = {
   HANGMAN_PICS: HANGMAN_PICS,
   WORDS_TO_GUESS: WORDS_TO_GUESS,
 };
+
+console.log(HANGMAN_PICS[6]);

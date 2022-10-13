@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "ascii-animation": "^1.0.4",
     "prompt-sync": "^4.2.0"
   }
 }
