@@ -30,7 +30,7 @@ let randomLevel3Word = getRndInteger(0, constants.WORDS_TO_GUESS.level3.length-1
             if (pick === "2") { 
                 addAWord ();
             };
-            if (pick === "3") { 
+            if (pick === "3") {
                 howTo ();
             };
             if (pick === "4") {
@@ -165,7 +165,7 @@ function guess() {
                 choosenLetters.add(firstChoice);
                 rightLetterCounter++;
                 let outputWord = constants.WORDS_TO_GUESS.level1[randomLevel1Word];
-               for (var i= 0; i< outputWord.length; i++ ) {
+                for (var i= 0; i< outputWord.length; i++ ) {
                     if (!choosenLetters.has(outputWord[i].toUpperCase())) {
                         outputWord = outputWord.replace(outputWord[i], "_");
                     };
