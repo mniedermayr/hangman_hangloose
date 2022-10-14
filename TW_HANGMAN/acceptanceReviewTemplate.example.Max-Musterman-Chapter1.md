@@ -1,37 +1,33 @@
 --
-reviewer: Peter Pan
-reviewed: Max Musterman
-date: 2022-09-08
+reviewer: Lilli, Marian
+reviewed: Corina
+date: 2022-10-14
 --
 
 # Chapter 1
-## Hello Functions
-1.1 OK 
-1.2 OK 
+# teamwork Hangman
 
-2.1 NOK
-2.2 NOK
+1.1 OK 
+1.2 OK
+1.3 OK
+1.4 ok
+1.5 OK
+1.6 OK
+1.7 OK
+1.8 OK
+1.9 OK
+1.10 OK
+
+
+2.1 OK
+2.2 OK
+2.3 OK
+2.4 OK
 
 3.1 OK
-3.2 NOK
-3.3 OK
+3.2 OK
 
 4.1 OK
-4.2 OK
-4.3 OK
-4.4 NOK
 
 5.1 OK
 5.2 OK
-5.3 NOK
-5.4 OK
-5.5 OK
-
-## Prince of Persia Tutorial
-1.1 OK
-1.2 OK
-1.3 OK
-1.4 OK
-1.5 NOK
-
-..
